@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{%block title%}
+		<title>Registro de Categorias</title>
+{%endblock%}
+{% block container %}
+	<div class="span7">
+	<div class="well">
+		<h2 class="text-center">Crear Nueva Categoria</h2>
+		<form class="form-horizontal text-center center-block" id="registerForm" action="" method="post">
+			{{form.as_ul}}
+			{% csrf_token %}
+			<br>
+			<button type="submit" class="btn btn-primary">aceptar</button>
+		</form>
+
+	</div>
+	</div>
+{%endblock%}

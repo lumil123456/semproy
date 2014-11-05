@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block title%}
+		<title>Registro de Preguntas</title>
+{%endblock%}
+{% block container %}
+	<div class="span7">
+	<div class="well">
+		<h2 class="text-center">Crear Nueva Pregunta</h2>
+		<form class="form-horizontal text-center center-block" id="registerForm" action="" method="post">
+			{{form.as_ul}}
+			{% csrf_token %}
+			<br>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+		</form>
+
+	</div>
+	</div>
+{%endblock%}

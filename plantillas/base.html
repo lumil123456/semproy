@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	{% block title %}
+      {% endblock %}
+    	<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+    	<style type="text/css">
+      		body {
+        		padding-top: 60px;
+        		padding-bottom: 40px;
+      		}
+    	</style>
+    	<link href="/static/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  	</head>
+
+  <body>
+
+    <div class="navbar navbar-text navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+         
+          <a class="brand" href="#">TribiadorOnline</a>
+          
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/blog/"></i>Inicio</a></li>
+              <li><a href="http://www.facebook.com">Facebook</a></li>
+              <li><a href="">Partidas en Juego</a></li>
+            </ul>
+            {% if user.is_anonymous %}
+            <form class="navbar-form pull-right">
+              <a href="/blog/registro" class="btn btn-primary">Registrarse</a>
+              <a href="/blog/login"  class="btn btn-primary">Login</a>
+            </form>
+            {%endif%}
+            {% if not user.is_anonymous %}
+            <form class="navbar-form pull-right">
+              <a href="/blog/logout"  class="btn btn-primary">{{user}} Logout</a>
+            </form>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">TribiadorOnline</li>
+              <li ><a href="#">Historial de Partidas</a></li>
+              <li><a href="#">Puntuacion</a></li>
+              <li><a href="#">Denuncias</a></li>
+              {%if not user.is_anonymous%}
+              <li class="nav-header">Administrador</li>
+              <li><a href="#">Crear Partida</a></li>
+              <li><a href="/blog/categoria">Categoria</a></li>
+              <li><a href="/blog/preguntas">Preguntas</a></li>
+              <li><a href="/blog/respuestas">Respuestas</a></li>
+              {%endif%}
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>TribiaOnline.bo</h1>
+          </div>
+          {%block container%}
+
+          {%endblock%}
+        </div>  
+      </div>
+    <hr>
+    </div>
+	<footer>
+     <div class="footer">
+      <div class="container">
+        <p class="text-footer">Este es la pagina de juegos<a href="#"> TribiaOnline</a></p>
+      </div>
+    </div>
+    </footer>
+</body>
+</html>
