@@ -80,7 +80,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-es'
+LANGUAGE_CODE = 'es-bo'
 
 TIME_ZONE = 'UTC'
 
@@ -100,6 +100,7 @@ STATIC_URL = '/static/'
 MEDIA_URL="/media/"
 TEMPLATE_DIRS=(os.path.join(RUTA_PROYECTO,"plantillas"),)
 STATICFILES_DIRS=(os.path.join(RUTA_PROYECTO,"static"),)
+MEDIA_ROOT=os.path.join(RUTA_PROYECTO,"media")
 
 
 #Capcha

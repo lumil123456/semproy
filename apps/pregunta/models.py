@@ -28,6 +28,8 @@ class Partida(models.Model):
 	categoria_par=models.ManyToManyField(Categorias)
 	usuario=models.ForeignKey(User)
 class Perfil(models.Model):
-	firt_name=models.CharField(max_length=30)
-	last_name=models.CharField(max_length=30)
+	user=models.OneToOneField(User, unique=True)
+	pais=models.CharField(max_length=100, null=True)
+	#firt_name=models.CharField(max_length=30)
+	#last_name=models.CharField(max_length=30)
 	avatar=ImageWithThumbsField(upload_to="img_user", sizes=((50,50),(200,200)))

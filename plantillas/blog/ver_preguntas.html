@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}LISTA DE PREGUNTAS{% endblock title %}
+{% block css1 %}<link href="/static/css/form.css" type="text/css" rel="stylesheet">{% endblock css1 %}	
+{% block css2 %}<link href="/static/css/perfilusuario.css" type="text/css" rel="stylesheet">{% endblock css2 %}
+{% block aux %}
+<li><a href="/blog/addpregunta/">Crear preguntas</a></li>
+<li><a href="/blog/verpreguntas/">Ver preguntas</a></li>
+<li><a href="/blog/detallepreguntas/">Detalles por pregunta</a></li>
+<li><a href="/blog/preguntaseliminar/">Eliminar pregunta</a></li>
+<li><a href="/blog/controlarpregunta/">Controlar preguntas</a></li>
+{% endblock aux %}
+{% block encabezado %}LISTA DE PREGUNTAS{% endblock encabezado %}
+{%block container%}
+{% for i in lista %}
+{{i.id}}.-{{i.enunciado}}
+<ol id="lista">
+	<li>{{i.respuesta1}}</li>
+	<li>{{i.respuesta2}}</li>
+	<li>{{i.respuesta3}}</li>
+	<li>{{i.respuesta4}}</li>
+</ol>	
+RESPUESTA: {{i.respuesta_correcta}}<br><br>
+{% endfor %}
+
+{% endblock %}
+	

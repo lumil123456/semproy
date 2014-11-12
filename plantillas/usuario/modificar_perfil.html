@@ -1,0 +1,18 @@
+{% extends  "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5">
+                {% load bootstrap3  %}
+                <form action="" method="post" class="form" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {% bootstrap_form formulario %}
+                 {% buttons %}
+                    <button type="submit" class="btn btn-primary">modificar</button>
+                 {% endbuttons %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -25,6 +25,9 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/blog/"></i>Inicio</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="/blog/perfil/">Mi perfil</a></li>
+              {% endif %}
               <li><a href="http://www.facebook.com">Facebook</a></li>
               <li><a href="">Partidas en Juego</a></li>
             </ul>

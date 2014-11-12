@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="contenedor">
+            <h2>Lista de usuarios</h2>
+            </ul>
+            <ul>
+                {% for i in usuarios %}
+                    <li><a href="/user/perfil/">{{ i.username }}</a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock %}

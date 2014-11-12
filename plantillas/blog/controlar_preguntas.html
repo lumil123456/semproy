@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}CONTROLAR PREGUNTAS{% endblock title %}
+<h6><center>Seleccione una pregunta para modificar o mantener</center></h6>	
+{% block css1 %}<link href="/static/css/form.css" type="text/css" rel="stylesheet">{% endblock css1 %}
+{% block css2 %}<link href="/static/css/perfilusuario.css" type="text/css" rel="stylesheet">{% endblock css2 %}
+{% block elim %}
+<li><a href="/blog/addpregunta/">Crear preguntas</a></li>
+<li><a href="/blog/verpregunta/">Ver preguntas</a></li>
+<li><a href="/blog/detallepreguntas/">Detalles por pregunta</a></li>
+<li><a href="/blog/preguntaseliminar/">Eliminar pregunta</a></li>
+<li><a href="/blog/controlarpregunta/">Controlar preguntas</a></li>
+{% endblock elim %}
+{% block encabezado %}CONTROLAR PREGUNTAS{% endblock encabezado %}
+{% block contenido %}
+<ol>
+{% for i in lista %}
+<li><a href="/blog/modificar_pregunta/{{i.id}}">{{i.enunciado}}</a></li>
+{% endfor %}
+</ol>
+{% endblock contenido %}

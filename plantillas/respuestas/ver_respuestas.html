@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}LISTA DE RESPUESTAS{% endblock title %}
+{% block css1 %}<link href="/static/css/form.css" type="text/css" rel="stylesheet">{% endblock css1 %}	
+{% block css2 %}<link href="/static/css/perfilusuario.css" type="text/css" rel="stylesheet">{% endblock css2 %}
+{% block aux %}
+<li><a href="/respuestas/addpRespuestas_Opcionales/">Crear respuestas</a></li>
+<li><a href="/respuestas/verrespuestas/">Ver respuestas</a></li>
+<li><a href="/respuestas/detallerespuestas/">Detalles por respuesta</a></li>
+<li><a href="/respuestas/respuestaseliminar/">Eliminar respuestas</a></li>
+<li><a href="/respuestas/controlarrespuestas/">Controlar respuestas</a></li>
+{% endblock aux %}
+{% block encabezado %}LISTA DE RESPUESTAS{% endblock encabezado %}
+{%block container%}
+{% for i in lista %}
+{{i.id}}.-{{i.enunciado}}
+<ol id="lista">
+	<li>{{i.respuesta1}}</li>
+	<li>{{i.respuesta2}}</li>
+	<li>{{i.respuesta3}}</li>
+	<li>{{i.respuesta4}}</li>
+</ol>	
+RESPUESTA: {{i.respuesta_correcta}}<br><br>
+{% endfor %}

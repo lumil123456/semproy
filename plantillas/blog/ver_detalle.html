@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}VER DETALLE DE UNA PREGUNTA{% endblock title %}
+{% block css1 %}<link href="/static/css/form.css" type="text/css" rel="stylesheet">{% endblock css1 %}	
+{% block css2 %}<link href="/static/css/perfilusuario.css" type="text/css" rel="stylesheet">{% endblock css2 %}
+{% block aux %}
+<li><a href="/blog/addPreguntas/">Crear preguntas</a></li>
+<li><a href="/blog/ver_preguntas/">Ver preguntas</a></li>
+<li><a href="/blog/detalle_preguntas/">Detalles por pregunta</a></li>
+<li><a href="/blog/eliminar_lista_preguntas/">Eliminar pregunta</a></li>
+<li><a href="/blog/controlar_preguntas/">Controlar preguntas</a></li>
+{% endblock aux %}		
+{% block encabezado %}VER DETALLE DE UNA PREGUNTA{% endblock encabezado %}
+{% block contenido %}
+<H2>{{pregunta.enunciado}} </H2>
+<H2>
+<ol>
+	<li>{{pregunta.respuesta1}}</li>
+	<li>{{pregunta.respuesta2}}</li>
+	<li>{{pregunta.respuesta3}}</li>
+	<li>{{pregunta.respuesta4}}</li>
+</ol>
+	RESPUESTA: {{pregunta.respuesta_correcta}}
+</H2>
+{% endblock contenido %}
+	

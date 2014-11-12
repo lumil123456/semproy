@@ -6,4 +6,8 @@ from django.template import RequestContext
 
 def error_permisos(request):
 	return render_to_response("error/error_permisos.html",{},RequestContext(request))
+
+
+def error_consulta(request):
+	return render_to_response("error/error_consulta.html",{},RequestContext(request))
 	
