@@ -37,7 +37,9 @@
 	</ul>
 	<h1><center>NUEVA PARTIDA</center></h1>
 	<div class="form">
-	<form action="" method="POST">{{form.as_ul}}{% csrf_token %}<input type="submit" value=".::ENVIAR::.">
+	<form action="" method="POST">
+		{{form.as_ul}}
+		{% csrf_token %}<input type="submit" value=".::ENVIAR::.">
 	<br><br><a href="/trivia/" target="_self" ><input type="button" value="CANCELAR"></a></form>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse 
 from django.http import *
 from .models import *
+from django.contrib.sessions.backends.db import SessionStore
 
 #from django.conf import settings
 #from django.core.mail import send_mail
@@ -56,10 +57,21 @@ def login_usuario(request):
 			username=request.POST["username"]
 			password=request.POST["password"]
 			resultado=authenticate(username=username,password=password)
-			if resultado:
-				login(request,resultado)
-				request.session["name"]=username
-				return HttpResponseRedirect("/blog/perfil/")
+			if resultado is not None: # NODE JS
+				if resultado.is_active:
+					login(request,resultado)
+					p=SessionStore()
+					p["name"]=username
+					p["estado"]="conectado"
+					p.save()
+					request.session["idkey"]=p.session_key
+					del request.session['cont']
+					#return HttpResponseRedirect("/perfil/")
+					request.session["name"]=username
+					return HttpResponseRedirect("/blog/perfil/")
+				else:
+					login(request, resultado)
+					return HttpResponseRedirect("/activar/")
 			else:
 				request.session['cont']=request.session['cont']+1
 				aux=request.session['cont']
@@ -77,6 +89,10 @@ def login_usuario(request):
 	return render_to_response("usuario/login.html",{"form":form},RequestContext(request))
 
 def logout_usuario(request):
+	p=SessionStore(session_key=request.session["idkey"])
+	p["estado"]="desconectado"
+	p["name"]=""
+	p.save()
 	logout(request)
 	return HttpResponseRedirect("/blog/")
 def perfil(request):
@@ -104,33 +120,38 @@ def lista_usuarios(request):
 	usuarios=User.objects.all()
 	return render_to_response("usuario/lista_usuarios.html",{"usuarios":usuarios},context_instance=RequestContext(request))
 def addCategoria(request):
+	titulo="Registro de categoria"
+	categoria=Categorias.objects.all()
 	usuario=request.user
 	if(not usuario.has_perm("usuario.addCategoria")):
-		return HttpResponseRedirect("/error/permit")
-	if(request.method=="POST"):
-		form_cat=Categorias_Form(request.POST)
-		if(form_cat.is_valid()):
-			form_cat.save()
-			return HttpResponseRedirect("/blog/categoria/")
-	form_cat=Categorias_Form()
-	return render_to_response("blog/categorias.html",{"form":form_cat},RequestContext(request))
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
+	if request.method=="POST":
+		formulario=Categorias_Form(request.POST)
+		if formulario.is_valid():
+			formulario.save()
+			estado=True
+			datos={'titulo':titulo,'formulario':formulario,'estado':estado,'categoria':categoria}
+			return render_to_response("blog/categorias.html",datos,context_instance=RequestContext(request))
+	else:
+		formulario=Categorias_Form()
+	datos={'titulo':titulo,'formulario':formulario,'categoria':categoria}
+	return render_to_response("blog/categorias.html",datos,context_instance=RequestContext(request))
 def addPregunta(request):
 	usuario=request.user
 	if(not usuario.has_perm("usuario.addPregunta")):
-		return HttpResponseRedirect("/error/permit")
+		return render_to_response("blog/restringir_pregunta.html",{},RequestContext(request))
 	if(request.method=="POST"):
 		form_pre=Pregunta_Form(request.POST)
 		if(form_pre.is_valid()):
 			form_pre.save()
+			#form_pre.save_m2m()
 			return HttpResponseRedirect("/blog/preguntas/")
 	form_pre=Pregunta_Form()
 	return render_to_response("blog/preguntas.html",{"form":form_pre},RequestContext(request))
-
-
 def addRespuesta(request):
 	usuario=request.user
 	if(not usuario.has_perm("usuario.addRespuesta")):
-		return HttpResponseRedirect("/error/permit")
+		return render_to_response("blog/restringir_respuestas.html",{},RequestContext(request))
 	if(request.method=="POST"):
 		form_res=Respuestas_Opcionales_Form(request.POST)
 		if(form_res.is_valid()):
@@ -171,7 +192,7 @@ def user_active_view(request):
 			return render_to_response("usuario/activar.html",{'formulario':formulario},context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect("/login/")
-#modificar perfil no me muestra
+
 def modificar_perfil(request):
 	if request.user.is_authenticated():
 		a=request.user
@@ -187,9 +208,6 @@ def modificar_perfil(request):
 			return render_to_response('modificar_perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect("/login/")
-def listar_usuario(request):
-	usuarios=User.objects.all()
-	return render_to_response("blog/listar_usuario.html",{"usuarios":usuarios},context_instance=RequestContext(request))
 #def permisos(request):
 #	listadepermisos=[]
 #	if(request.user.has_perm("usuarios.addCategoria")):
@@ -207,22 +225,35 @@ def listar_usuario(request):
 #preguntas
 
 def ver_preguntas(request):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	lista=Pregunta.objects.all()
-	return render_to_response("blog/ver_preguntas.html",{"lista":lista},RequestContext(request))
+	lista2=Respuestas_Opcionales.objects.all()
+	return render_to_response("blog/ver_preguntas.html",{"lista":lista,'lista2':lista2},RequestContext(request))
 def restringir_categoria(request):
-	lista=categoria.objects.all()
-	return render_to_response("blog/restringir_categoria.html",{"categoria":categoria},RequestContext(request))
+	lista=Categorias.objects.all()
+	return render_to_response("blog/restringir_categoria.html",{"lista":lista},RequestContext(request))
 def restringir_pregunta(request):
-	lista=pregunta.objects.all()
+	lista=Pregunta.objects.all()
 	return render_to_response("blog/restringir_pregunta.html",{"lista":lista},RequestContext(request))
 def ver_categoria(request):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	lista=categorias.objects.all()
 	return render_to_response("blog/ver_categoria.html",{"lista":lista},RequestContext(request))
 def controlar_preguntas(request):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	lista=pregunta.objects.all()
 	return render_to_response("blog/controlar_preguntas.html",{"lista":lista},RequestContext(request))
 
 def modificar_pregunta(request,id):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	pregunta=Pregunta.objects.get(pk=id)
 	if request.method=="POST":
 		fpregunta=Pregunta_Form(request.POST, instance=pregunta)
@@ -232,24 +263,41 @@ def modificar_pregunta(request,id):
 	else:
 		fpregunta=Pregunta_Form(instance=pregunta)
 	return render_to_response("blog/modificar_pregunta.html",{"fpregunta":fpregunta},RequestContext(request))
+	
 #error desde aki hasta
 def detalle_pregunta(request):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	pregunta=get_object_or_404(Pregunta,pk=pregunta)
 	return render_to_response("blog/detalle_pregunta.html",{"pregunta":pregunta},RequestContext(request))
 def ver_detalle(request,id):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	pregunta=get_object_or_404(mpregunta,pk=id)
 	return render_to_response("blog/ver_detalle.html",{"pregunta":pregunta},RequestContext(request))
 
-def ver_detalle_prgunta(request,id):
+def ver_detalle_pregunta(request,id):
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
 	pregunta=get_object_or_404(pregunta, pk=id)
 	return render_to_response("blog/ver_detalle.html",{"pregunta":pregunta},RequestContext(request))
 #eeror al eliminar 
 def eliminar_pregunta(request,id):
-	elim=pregunta.objects.get(pk=id)
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
+	elim=Pregunta.objects.get(pk=id)
 	borrar=elim.delete()
-	return render_to_response("/blog/eliminar_pregunta/")
+	return HttpResponseRedirect("/blog/eliminarlistadepreguntas/")
+#esto ya funciona
 def eliminar_lista_preguntas(request):
-	lista=pregunta.objects.all()
+	usuario=request.user
+	if(not usuario.has_perm("usuario.addCategoria")):
+		return render_to_response("blog/restringir_categoria.html",{},RequestContext(request))
+	lista=Pregunta.objects.all()
 	return render_to_response("blog/eliminar_lista_preguntas.html",{"lista":lista},RequestContext(request))
 #hasta aki
 def addPartida(request):
@@ -268,3 +316,24 @@ def addPartida(request):
 def lista_de_partidas(request):
 	lista=Partida.objects.filter(tipo_partida='public')
 	return render_to_response("blog/lista_de_partidas.html",{"lista":lista},RequestContext(request))
+
+def gamer_view(request):
+	idsession=request.session["idkey"]
+	return HttpResponseRedirect("http://localhost:3001/creaciondepartidas/"+idsession)
+
+def permisos(request):
+	listadepermisos=[]
+	listadepermisos.append({"url":"/blog/game/","label":"Game"})
+	#listadepermisos.append({"url":"/blog/login/","label":"Login"})
+	#listadepermisos.append({"url":"/blog/logout/","label":"LoginOUT"})
+	return listadepermisos	
+def adminPermisos(request):
+	permisosGlobales=mispermisos()
+	lista=permisos(request)
+	render_to_response("")
+#myuser.permissions.add("")
+#myuser.premissions.remove("")
+def mispermisos():
+	listagenerica=[]
+	listagenerica.append({"id":"usuarios.blog"})
+	return listagenerica

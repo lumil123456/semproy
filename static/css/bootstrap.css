@@ -205,19 +205,6 @@ textarea {
   img {
     page-break-inside: avoid;
   }
-  img {
-    max-width: 100% !important;
-  }
-  @page  {
-    margin: 0.5cm;
-  }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-  h2,
   h3 {
     page-break-after: avoid;
   }
@@ -1115,6 +1102,7 @@ textarea {
   height: auto;
 }
 
+formulario del login 
 textarea,
 input[type="text"],
 input[type="password"],
@@ -1168,6 +1156,7 @@ input[type="color"]:focus,
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
+
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
@@ -1195,7 +1184,7 @@ input[type="file"] {
   /* For IE7, add top margin to align select with labels */
 
   line-height: 30px;
-}
+} aki se cambio
 
 select {
   width: 220px;
@@ -3110,12 +3099,12 @@ table th[class*="span"],
           border-radius: 4px;
 }
 
-.well {aki se cambio
+.well {                             aki se cambio
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #f5d9e2;
-  border: 1px solid #f5d9e2;
+  background-color:#00CCFF;
+  border: 2px solid #000033;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
@@ -3127,7 +3116,7 @@ table th[class*="span"],
 .well blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
-}
+}                     hasta aki
 
 .well-large {
   padding: 24px;
@@ -3359,7 +3348,7 @@ input[type="button"].btn-block {
   color: rgba(255, 255, 255, 0.75);
 }
 
-.btn-primary {
+.btn-primary {                    se cambio aki botones primarios
   color: #000000;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #006dcc;
@@ -3368,7 +3357,7 @@ input[type="button"].btn-block {
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
   background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
   background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #EE82EE, #EE82EE);
+  background-image: linear-gradient(to bottom, #0000FF, #0000FF);
   background-repeat: repeat-x;
   border-color: #0044cc #0044cc #002a80;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -3383,7 +3372,7 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #0044cc;
+  background-color: #00FF00;
   *background-color: #003bb3;
 }
 
@@ -4159,7 +4148,7 @@ input[type="submit"].btn.btn-mini {
 .nav-pills.nav-stacked > li:last-child > a {
   margin-bottom: 1px;
 }
-
+submenu
 .nav-tabs .dropdown-menu {
   -webkit-border-radius: 0 0 6px 6px;
      -moz-border-radius: 0 0 6px 6px;
@@ -4493,7 +4482,7 @@ input[type="submit"].btn.btn-mini {
   display: inline-block;
   margin-bottom: 0;
 }
-
+formularios
 .navbar-form input[type="image"],
 .navbar-form input[type="checkbox"],
 .navbar-form input[type="radio"] {
@@ -6119,25 +6108,29 @@ a.badge:focus {
   margin-bottom: 0;
 }
 
-.hero-unit {
+.hero-unit { AKI SE MODIFICO EL TRIVIAL
   padding: 60px;
   margin-bottom: 30px;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background: #006600;
+  border:2px solid;
+  border-color: #000099;
+  background-color:#B0E0E6;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
 
-.hero-unit h1 {
+.hero-unit h1 { AKI SE MODIFICO
   margin-bottom: 0;
   font-size: 60px;
-  line-height: 1;
+  line-height: 3;
   letter-spacing: -1px;
   color: inherit;
+  text-align: center;
 }
 
 .hero-unit li {

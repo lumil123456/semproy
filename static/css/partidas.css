@@ -1,0 +1,12 @@
+table {
+	border: 1px solid #000;
+	border-collapse:collapse;
+	width:500px;
+	table-layout: fixed;
+	margin:10px;
+	float: left;
+}
+table th {
+	padding: 4px;
+	border-spacing: 100px;
+}

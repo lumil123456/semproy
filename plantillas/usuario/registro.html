@@ -4,20 +4,22 @@
 {%endblock%}
 {% block container %}
 	<div class="span7">
-	<div class="well">
-		<h2 class="text-center">Crear usuario</h2>
-		{% if form.subject.errors %}
-    		<ol>
-    			{% for error in user_form.subject.errors %}
-        			<li><strong>{{ error|escape }}</strong></li>
-    			{% endfor %}
-    		</ol>
-		{% endif %}
-		<form class="form-horizontal text-center center-block" id="registerForm" action="" method="post">
-			{% csrf_token %}
-			{{ user_form.as_p }}
-			<button type="submit" class="btn btn-primary">Registrarme</button>
-		</form>
+		<div class="well">
+			<h2 class="text-center">Registrar Usuario</h2>
+			{% if form.subject.errors %}
+	    		<ol>
+	    			{% for error in user_form.subject.errors %}
+	        			<li><strong>{{ error|escape }}</strong></li>
+	    			{% endfor %}
+	    		</ol>
+			{% endif %}
+			<img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">
+			<form class="form-horizontal text-center center-block" id="registerForm" action="" method="post">
+				{% csrf_token %}
+				{{ user_form.as_p }}
+
+				<button type="submit" class="btn btn-primary">Registrarme</button>
+			</form>
 	</div>
 	</div>
 {%endblock%}

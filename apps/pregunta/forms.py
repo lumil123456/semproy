@@ -45,6 +45,7 @@ class Categorias_Form(ModelForm):
 class Pregunta_Form(ModelForm):
 	class Meta:
 		model=Pregunta
+		exclude=["usuario"]
 class Respuestas_Opcionales_Form(ModelForm):
 	class Meta:
 		model=Respuestas_Opcionales

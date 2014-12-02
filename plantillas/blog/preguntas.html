@@ -5,14 +5,18 @@
 {% block container %}
 	<div class="span7">
 	<div class="well">
-		<h2 class="text-center">Crear Nueva Pregunta</h2>
+		<h2 class="text-center">Registrar Nueva Pregunta</h2>
+		<img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">
 		<form class="form-horizontal text-center center-block" id="registerForm" action="" method="post">
 			{{form.as_ul}}
+
 			{% csrf_token %}
 			<br>
 			<button type="submit" class="btn btn-primary">Aceptar</button>
+			</br>
 		</form>
 
 	</div>
 	</div>
 {%endblock%}
+

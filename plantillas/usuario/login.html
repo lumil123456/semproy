@@ -4,37 +4,45 @@
 {%endblock%}
 {% block container %}
 {% include "includes/header.html" %}
-	<div class="container page">
-		<div class="row">
-			<div class="col-xs-12">
-			{% if estado %}
-				<div class="alert alert-danger" role="alert">{{mensaje}} <span class="glyphicon glyphicon-warning-sign"></span></div>
-			{% endif %}
-			<form class="form-horizontal" role="form" method="post">
-			{% csrf_token %}
-			  <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">Nick :</label>
-			    <div class="col-sm-3">
-			      <input type="text" class="form-control" name="username" id="inputEmail3" placeholder="Ingrese su nick">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Contraseña :</label>
-			    <div class="col-sm-4">
-			      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Ingrese la contraseña">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-offset-2 col-sm-10">
-			  		{{form2.as_p}}
-			  	</div>
-			  </div>
-			  <div class="form-group">
-			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-primary">Ingresar</button>
-			    </div>
-			  </div>
-			</form>				
+	<div class="span7">
+		<div class="well">
+			<h2 class="text-center">Login</h2>
+			<div class="container page">
+				<div class="row">
+					<div class="col-xs-12">
+						{% if estado %}
+							<div class="alert alert-danger" role="alert">{{mensaje}} <span class="glyphicon glyphicon-warning-sign"></span></div>
+						{% endif %}
+						<img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">
+						<form class="form-horizontal center-block" role="form" method="post">
+						{% csrf_token %}
+							<div class="row">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-4 control-label">Nickname :</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" name="username" id="inputEmail3" placeholder="Ingrese su nickname">
+									</div>
+								</div>}
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-2 control-label">Contraseña :</label>
+								<div class="col-sm-4">
+							    	<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Ingrese su contraseña">
+							    </div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-6 col-sm-6">
+							  		{{form2.as_p}}
+							  	</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-6 col-sm-6">
+							    	<button type="submit" class="btn btn-primary">Ingresar</button>
+							    </div>
+							</div>
+						</form>				
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

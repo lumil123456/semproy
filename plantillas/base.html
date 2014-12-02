@@ -2,7 +2,10 @@
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
-    	{% block title %}
+      <link rel="stylesheet" type="text/css" href="/static/principal.css">
+      <link rel="stylesheet" type="text/css" href="/static/formularios.css">
+      <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+     	{% block title %}
       {% endblock %}
     	<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
     	<style type="text/css">
@@ -14,13 +17,13 @@
     	<link href="/static/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
   	</head>
 
-  <body>
-
+  <body background="/static/img/slider/textura-cuadritos-azul.jpg" style="background-attachment: fixed">
+  <div class="span">
     <div class="navbar navbar-text navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
          
-          <a class="brand" href="#">TribiadorOnline</a>
+          <a class="brand" href="#">TriviadorOnline</a>
           
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -29,7 +32,8 @@
               <li><a href="/blog/perfil/">Mi perfil</a></li>
               {% endif %}
               <li><a href="http://www.facebook.com">Facebook</a></li>
-              <li><a href="">Partidas en Juego</a></li>
+              <li><a href="/">Partidas</a></li>
+              <li><a href="/"></i>Contactos</a></li>
             </ul>
             {% if user.is_anonymous %}
             <form class="navbar-form pull-right">
@@ -54,22 +58,37 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">TribiadorOnline</li>
+              <li><a href="/blog/listadeusuarios/" >Lista de Usuarios</a></li>
               <li ><a href="#">Historial de Partidas</a></li>
               <li><a href="#">Puntuacion</a></li>
               <li><a href="#">Denuncias</a></li>
               {%if not user.is_anonymous%}
               <li class="nav-header">Administrador</li>
-              <li><a href="#">Crear Partida</a></li>
-              <li><a href="/blog/categoria">Categoria</a></li>
-              <li><a href="/blog/preguntas">Preguntas</a></li>
-              <li><a href="/blog/respuestas">Respuestas</a></li>
+
+                <li><a href="#">Crear Partida</a></li>
+                <li><a href="">Categoria</a></li>
+                  <ul>
+                    <li><a href="/blog/categorias">Registrar Categorias</a></li>
+                  </ul>
+                </li>
+                <li><a href="">Preguntas</a>
+                  <ul>
+                    <li><a href="/blog/preguntas">Registrar Pregunta</a></li>
+                    <li><a href="/blog/verpreguntas">Lista de Preguntas</a></li>
+                    <li><a href="/blog/eliminarlistadepreguntas">Eliminar preguntas</a></li>
+                  </ul>
+                <li><a href="">Respuestas</a>
+                  <ul>
+                    <li><a href="/blog/respuestas">Registrar Respuestas</a></li>
+                  </ul>
+                </li>
               {%endif%}
             </ul>
           </div>
         </div>
         <div class="span9">
           <div class="hero-unit">
-            <h1>TribiaOnline.bo</h1>
+            <h1>TriviaOnline.bo</h1>
           </div>
           {%block container%}
 
@@ -78,6 +97,7 @@
       </div>
     <hr>
     </div>
+    
 	<footer>
      <div class="footer">
       <div class="container">
@@ -85,5 +105,7 @@
       </div>
     </div>
     </footer>
+
+          
 </body>
 </html>
