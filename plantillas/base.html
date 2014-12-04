@@ -31,6 +31,13 @@
               {% if user.is_authenticated %}
               <li><a href="/blog/perfil/">Mi perfil</a></li>
               {% endif %}
+             
+              {% if user.is_authenticated %}
+               <li><a href="/logout/">Salir</a></li>
+               <li><a href="http://localhost:3006/">Jugar</a></li>
+              {% else %}
+               <li><a href="/login/">Login</a></li>
+              {% endif %}
               <li><a href="http://www.facebook.com">Facebook</a></li>
               <li><a href="/">Partidas</a></li>
               <li><a href="/"></i>Contactos</a></li>
@@ -64,8 +71,7 @@
               <li><a href="#">Denuncias</a></li>
               {%if not user.is_anonymous%}
               <li class="nav-header">Administrador</li>
-
-                <li><a href="#">Crear Partida</a></li>
+              
                 <li><a href="">Categoria</a></li>
                   <ul>
                     <li><a href="/blog/categorias">Registrar Categorias</a></li>
@@ -99,6 +105,7 @@
     </div>
     
 	<footer>
+    <img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">
      <div class="footer">
       <div class="container">
         <p class="text-footer">Este es la pagina de juegos<a href="#"> TribiaOnline</a></p>

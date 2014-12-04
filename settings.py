@@ -27,6 +27,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+###SOCIAL_AUTH
 
 # Application definition
 
@@ -41,6 +42,15 @@ INSTALLED_APPS = (
     'triviador.apps.pregunta',
     'triviador.apps.error',
     'captcha',
+    #'social.apps.django_app.default',
+    'social.apps.django_app.default',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,14 +70,14 @@ WSGI_APPLICATION = 'triviador.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-   # }
-#}
-
+"""
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -106,3 +116,43 @@ MEDIA_ROOT=os.path.join(RUTA_PROYECTO,"media")
 #Capcha
 RECAPTCHA_PUBLIC_KEY = '6LcOTvwSAAAAAMQYA4DpRIL-0z7v4cQXZghF7yp4'
 RECAPTCHA_PRIVATE_KEY = '6LcOTvwSAAAAAEu9W75F_mKDpQUwS8dYcuZNXkgs'
+
+#ENLACE A FACEBOOK
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+GOOGLE_OAUTH2_CLIENT_ID = ''
+
+GOOGLE_OAUTH2_CLIENT_SECRET = ''
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '539064209560004'
+SOCIAL_AUTH_FACEBOOK_SECRET = '0a3b9982fc38723714affd8d62409000'
+
+
+
+ACCOUNT_ACTIVATION_DAYS=7
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/account/login/'
+
+LOGIN_REDIRECT_URL = '/account/post_login/'
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://www.facebook.com/'
+
+#<<<<<<< HEAD
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

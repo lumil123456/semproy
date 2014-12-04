@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 
 from django.shortcuts import render_to_response, redirect, render
 from django.template import RequestContext, loader, Context, Template
@@ -319,7 +319,12 @@ def lista_de_partidas(request):
 
 def gamer_view(request):
 	idsession=request.session["idkey"]
-	return HttpResponseRedirect("http://localhost:3001/creaciondepartidas/"+idsession)
+	return HttpResponseRedirect("http://localhost:3006/?id_session="+idsession)
+
+def chat(request):
+	idsession=request.session["idkey"]
+	return HttpResponseRedirect("http://localhost:3006/django/"+idsession)
+
 
 def permisos(request):
 	listadepermisos=[]
@@ -337,3 +342,7 @@ def mispermisos():
 	listagenerica=[]
 	listagenerica.append({"id":"usuarios.blog"})
 	return listagenerica
+
+def bienvenidofb(request):
+	return HttpResponseRedirect("/trivia/")
+	return render_to_response("bienvenidofb.html",{"menu":menu},RequestContext(request))

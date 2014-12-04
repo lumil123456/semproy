@@ -38,6 +38,7 @@
 							<div class="form-group">
 								<div class="col-sm-offset-6 col-sm-6">
 							    	<button type="submit" class="btn btn-primary">Ingresar</button>
+							    	<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
 							    </div>
 							</div>
 						</form>				
