@@ -8,7 +8,8 @@ urlpatterns = patterns('',
   url(r'^registro/$',registro), 
   url(r'^login/$',login_usuario),
   url(r'^logout/$',logout_usuario), 
-  url(r'^perfil/$',perfil),  
+  url(r'^perfil/$',perfil),
+  url(r'^perfil/contrasena/$',cambiar_contrasena),    
   url(r'^perfil/agregar/$',perfil_agregar),  
   url(r'^listadeusuarios/$',lista_usuarios),
   url(r'^categorias/$',addCategoria),
@@ -28,11 +29,11 @@ urlpatterns = patterns('',
   url(r'^verdetallepregunta/(?P<id>\d+)/$',ver_detalle,name='ver_detalle'),
   url(r'^eliminarpregunta/(?P<id>\d+)/$',eliminar_pregunta,name='eliminar_pregunta'),
   url(r'^eliminarlistadepreguntas/$',eliminar_lista_preguntas),
-  url(r'^crearpartida/$',addPartida),
+  url(r'^crearpartida/$',crear_partida),
   url(r'^listapartidas/$',lista_de_partidas),
 
   url(r'^gamer/$',gamer_view),
 
   url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT,}),
-
+  #url(r'^crearpregunta/$',crear_pregunta),
 )

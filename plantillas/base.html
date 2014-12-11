@@ -5,22 +5,23 @@
       <link rel="stylesheet" type="text/css" href="/static/principal.css">
       <link rel="stylesheet" type="text/css" href="/static/formularios.css">
       <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+
+
+
      	{% block title %}
       {% endblock %}
     	<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
-    	<style type="text/css">
-      		body {
-        		padding-top: 60px;
-        		padding-bottom: 40px;
-      		}
-    	</style>
+      <link href="/static/css/base.css" rel="stylesheet" type="text/css">
+    
     	<link href="/static/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
   	</head>
-
   <body background="/static/img/slider/textura-cuadritos-azul.jpg" style="background-attachment: fixed">
   <div class="span">
     <div class="navbar navbar-text navbar-fixed-top">
       <div class="navbar-inner">
+      <div id="animacion">
+    <marquee><h4>BIENVENIDO AL SISTEMA DEL TRIVIADOR ONLINE</h4></marquee>>
+  </div>
         <div class="container">
          
           <a class="brand" href="#">TriviadorOnline</a>
@@ -33,13 +34,13 @@
               {% endif %}
              
               {% if user.is_authenticated %}
-               <li><a href="/logout/">Salir</a></li>
-               <li><a href="http://localhost:3006/">Jugar</a></li>
+                <li><a href="/blog/">Salir</a></li>
+                <li><a href="http://localhost:3006/">Chat</a></li>
+                <li><a href="/blog/crearpartida">Nueva Partida</a></li>
               {% else %}
                <li><a href="/login/">Login</a></li>
               {% endif %}
-              <li><a href="http://www.facebook.com">Facebook</a></li>
-              <li><a href="/">Partidas</a></li>
+
               <li><a href="/"></i>Contactos</a></li>
             </ul>
             {% if user.is_anonymous %}
@@ -62,47 +63,37 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
+          <div class="well sidebar-nav" id="menuIzquierdo">
             <ul class="nav nav-list">
-              <li class="nav-header">TribiadorOnline</li>
+              <ul>
+                <h5>TribiadorOnline</h5>
               <li><a href="/blog/listadeusuarios/" >Lista de Usuarios</a></li>
               <li ><a href="#">Historial de Partidas</a></li>
               <li><a href="#">Puntuacion</a></li>
               <li><a href="#">Denuncias</a></li>
               {%if not user.is_anonymous%}
-              <li class="nav-header">Administrador</li>
-              
-                <li><a href="">Categoria</a></li>
-                  <ul>
-                    <li><a href="/blog/categorias">Registrar Categorias</a></li>
-                  </ul>
-                </li>
-                <li><a href="">Preguntas</a>
-                  <ul>
-                    <li><a href="/blog/preguntas">Registrar Pregunta</a></li>
-                    <li><a href="/blog/verpreguntas">Lista de Preguntas</a></li>
-                    <li><a href="/blog/eliminarlistadepreguntas">Eliminar preguntas</a></li>
-                  </ul>
-                <li><a href="">Respuestas</a>
-                  <ul>
-                    <li><a href="/blog/respuestas">Registrar Respuestas</a></li>
-                  </ul>
-                </li>
+                <h5>Administrador</h5>
+                  <li><a href="/blog/categorias">Registrar Categorias</a></li>
+                  <li><a href="/blog/preguntas">Registrar Pregunta</a></li>
+                  <li><a href="/blog/respuestas">Registrar Respuestas</a></li>
+                  <li><a href="/blog/verpreguntas">Lista de Preguntas</a></li>
+                  <li><a href="/blog/eliminarlistadepreguntas">Eliminar preguntas</a></li>
               {%endif%}
+              </ul>
             </ul>
           </div>
         </div>
         <div class="span9">
           <div class="hero-unit">
-            <h1>TriviaOnline.bo</h1>
+            <h2>TriviaOnline.bo</h2>
           </div>
           {%block container%}
-
           {%endblock%}
         </div>  
       </div>
     <hr>
     </div>
+
     
 	<footer>
     <img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">

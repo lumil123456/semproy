@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}CREAR PREGUNTA{% endblock title %}
+{% block css1 %}<link href="/static/css/form.css" type="text/css" rel="stylesheet">{% endblock css1 %}
+{% block css2 %}<link href="/static/css/perfilusuario.css" type="text/css" rel="stylesheet">{% endblock css2 %}	
+{% block aux %}
+<li><a href="/blog/crearpregunta/">Crear preguntas</a></li>
+<li><a href="/preguntas/verpreguntas/">Ver preguntas</a></li>
+<li><a href="/preguntas/detallespreguntas/">Detalles por pregunta</a></li>
+<li><a href="/preguntas/preguntaseliminar/">Eliminar pregunta</a></li>
+<li><a href="/preguntas/controlpreguntas/">Control de preguntas</a></li>
+{% endblock aux %}
+{% block encabezado %}CREAR PREGUNTA{% endblock encabezado %}
+{% block container %}
+<div class="form">
+<form action="" method="POST">{{fpregunta.as_ul}}{% csrf_token %}<input type="submit" value=".::ENVIAR::."></form>
+</div>
+{% endblock %}
+	

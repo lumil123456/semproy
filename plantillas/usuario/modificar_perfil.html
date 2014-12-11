@@ -1,15 +1,16 @@
 {% extends  "base.html" %}
 
-{% block content %}
+{% block container %}
+    <link href="/static/css/modificarperfil.css" rel="stylesheet" type="text/css">
     <div class="container">
         <div class="row">
             <div class="col-xs-5">
                 {% load bootstrap3  %}
-                <form action="" method="post" class="form" enctype="multipart/form-data">
+                <form id="formEditar" action="" method="post" class="form" enctype="multipart/form-data">
                  {% csrf_token %}
                  {% bootstrap_form formulario %}
                  {% buttons %}
-                    <button type="submit" class="btn btn-primary">modificar</button>
+                    <button type="submit" class="btn btn-primary" id="nodificar">modificar</button>
                  {% endbuttons %}
                 </form>
             </div>

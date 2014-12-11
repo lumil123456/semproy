@@ -1,9 +1,21 @@
+body {
+  width: 1500px;
+  height: 50px;
+  margin: auto;
+  position: absolute;
+
+  color: #000;
+}
 form {
 	width: 30%;
 	border: 1px solid #ccc;
 	margin: 60px;
 	padding: 25px;
 	list-style: none;
+	background: #00FFFF;
+	background-position: center;
+	border-radius: 20px;
+
 }
 label {
 	font-size:12px;
@@ -12,7 +24,7 @@ label {
 }
 input {
 	margin-bottom: 30px;
-	width: 105%;
+	width: 60%;
 	padding: 10px;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -40,11 +52,15 @@ li {
 
 input[type="button"]{
 	margin-bottom: 0;
-	background: #1668C4;
+	background: #abc;
 	color:#fff;
 	border: none;
 }
 
+input[type="button"]:hover{
+	background: #123;
+	cursor:pointer;
+}
 input[type="radio"]{
 	display:inline-block;
 	width:10px;

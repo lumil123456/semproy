@@ -3,7 +3,7 @@
 <h1 align="center">Bienvenido!!! {{nombre}}</h1>
 
 {% block title %}
-        <title>Perfil</title>
+        <title>Cambiar contraseña</title>
 {% endblock %}
 
 {% block container %}
@@ -18,12 +18,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-10">
-            <h2>{{ user.get_full_name }}</h2><br>
-            <h2>Pais : {{user.perfil.pais }}</h2>
-            <img src="/media/{{ user.perfil.avatar}}" alt="avatar">
-
-            <a href="/blog/perfil/agregar/" class="btn btn-primary">Editar perfil</a>
-            <a href="/blog/perfil/contrasena/" class="btn btn-primary">Cambiar contraseña</a>
+            <form action="" method="post">
+            {% csrf_token %}
+                {{ formulario.as_p }}
+                <input type="submit" value="Cambiar">
+            </form>
             </div>
         </div>
     </div>

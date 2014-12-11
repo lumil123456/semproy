@@ -6,18 +6,19 @@
         <title>Perfil</title>
 {% endblock %}
 
-{% block content %}
+{% block container %}
     {% include "includes/header.html" %}
+    <link href="/static/css/perfilagregar.css" type="text/css" rel="stylesheet">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
                {% load bootstrap3  %}
                <img src="/static/img/form/mariposas para primavera, butterfly (2).gif" border="100" width="100" height="100">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form id="formEditar" action="" method="post" enctype="multipart/form-data">
                  {% csrf_token %}
                  {% bootstrap_form formulario %}
                  {% buttons %}
-                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <button type="submit" class="btn btn-primary" id="nodificar">Modificar</button>
                  {% endbuttons %}
                 </form>
             </div>

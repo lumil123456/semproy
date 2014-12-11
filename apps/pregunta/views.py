@@ -95,6 +95,27 @@ def logout_usuario(request):
 	p.save()
 	logout(request)
 	return HttpResponseRedirect("/blog/")
+
+def cambiar_contrasena(request):
+	if request.method=="POST":
+		formulario=Fcontrasena(request.POST)
+		if formulario.is_valid():
+			contrasena_antigua=request.POST['password1']
+			contrasena_nueva=request.POST['password2']
+			#contrasena_antigua=request.POST['password1']
+			resultado=authenticate(username=request.user,password=contrasena_antigua)
+			if resultado is not None:
+				usuario=User.objects.get(username=request.user)
+				usuario.set_password(contrasena_nueva)
+				usuario.save()
+				#login(request,resultado)
+				return HttpResponseRedirect("/blog/login/")
+			else:
+				return HttpResponse("La contrasena no coincide con la antigua")
+	else:
+		formulario=Fcontrasena()
+	return render_to_response("usuario/contrasena.html",{'formulario':formulario},RequestContext(request))
+
 def perfil(request):
 	return render_to_response("usuario/perfil.html",{"nombre":request.session["name"]},RequestContext(request))
 def perfil_agregar(request):
@@ -300,7 +321,7 @@ def eliminar_lista_preguntas(request):
 	lista=Pregunta.objects.all()
 	return render_to_response("blog/eliminar_lista_preguntas.html",{"lista":lista},RequestContext(request))
 #hasta aki
-def addPartida(request):
+def crear_partida(request):
 	if(request.method=="POST"):
 		usuario=User.objects.get(username=request.user)
 		form=PartidaForm(request.POST)
@@ -309,10 +330,10 @@ def addPartida(request):
 			obj.usuario=usuario
 			obj.save()
 			form.save_m2m()
-			return HttpResponseRedirect("/trivia/")
+			return HttpResponseRedirect("/blog/")
 	else:
 		form=PartidaForm()
-	return render_to_response("blog/addPartida.html",{"form":form},RequestContext(request))
+	return render_to_response("blog/crear_partida.html",{"form":form},RequestContext(request))
 def lista_de_partidas(request):
 	lista=Partida.objects.filter(tipo_partida='public')
 	return render_to_response("blog/lista_de_partidas.html",{"lista":lista},RequestContext(request))
@@ -326,23 +347,70 @@ def chat(request):
 	return HttpResponseRedirect("http://localhost:3006/django/"+idsession)
 
 
-def permisos(request):
-	listadepermisos=[]
-	listadepermisos.append({"url":"/blog/game/","label":"Game"})
+#def permisos(request):
+#	listadepermisos=[]
+#	listadepermisos.append({"url":"/blog/game/","label":"Game"})
 	#listadepermisos.append({"url":"/blog/login/","label":"Login"})
 	#listadepermisos.append({"url":"/blog/logout/","label":"LoginOUT"})
-	return listadepermisos	
-def adminPermisos(request):
-	permisosGlobales=mispermisos()
-	lista=permisos(request)
-	render_to_response("")
+#	return listadepermisos	
+#def adminPermisos(request):
+#	permisosGlobales=mispermisos()
+#	lista=permisos(request)
+#	render_to_response("")
 #myuser.permissions.add("")
 #myuser.premissions.remove("")
-def mispermisos():
-	listagenerica=[]
-	listagenerica.append({"id":"usuarios.blog"})
-	return listagenerica
+#def mispermisos():
+#	listagenerica=[]
+#	listagenerica.append({"id":"usuarios.blog"})
+#	return listagenerica
 
-def bienvenidofb(request):
-	return HttpResponseRedirect("/trivia/")
-	return render_to_response("bienvenidofb.html",{"menu":menu},RequestContext(request))
+#def permisos(request):
+#	listadepermisos=[]
+#	if(request.user.has_perm("usuarios.ver_blog")):
+#		listadepermisos.append({"url":"/blog/","label":"Blog"})
+#	if request.user.has_perm("usuarios.addCategoria"):
+#		listadepermisos.append({"url":"/blog/categorias/","label":"Categorias"})
+#	if request.user.has_perm("usuarios.addPregunta"):
+#		listadepermisos.append({"url":"/blog/preguntas/","label":"Pregunta"})
+#	if request.user.has_perm("usuarios.addRespuesta"):
+#		listadepermisos.append({"url":"/blog/respuestas/","label":"Pregunta"})
+#	listadepermisos.append({"url":"/blog/registro/","label":"Registro"})
+#	listadepermisos.append({"url":"/blog/nuevapartida/","label":"Nueva Partida"})
+	#listadepermisos.append({"url":"/blog/login/","label":"Login"})
+	#listadepermisos.append({"url":"/blog/logout/","label":"LoginOUT"})
+#	return listadepermisos	
+
+
+#def adminPermisos(request):
+#	permisosGlobales=mispermisos()
+#	lista=permisos(request)
+#	render_to_response("")
+#myuser.permissions.add("")
+#myuser.premissions.remove("")
+#def mispermisos():
+#	listagenerica=[]
+#	listagenerica.append({"id":"usuarios.ver_blog"})
+#	listagenerica.append({"id":"usuarios.categoria"})
+#	listagenerica.append({"id":"usuarios.addPregunta"})
+#	listagenerica.append({"id":"usuarios.addRespuesta"})
+#	listagenerica.append({"id":"usuarios.addCategoria"})
+#	return listagenerica
+
+#def bienvenidofb(request):
+#	return HttpResponseRedirect("/trivia/")
+#	return render_to_response("bienvenidofb.html",{"menu":menu},RequestContext(request))
+
+
+#def crear_pregunta(request):
+
+#	if request.method=="POST":
+#		fpregunta=Pregunta_Form(request.POST)
+#		if fpregunta.is_valid():
+#			fpregunta.save()
+#			return HttpResponseRedirect("/blog/preguntas/")
+#	fpregunta=Pregunta_Form()
+#	return render_to_response("blog/crear_pregunta.html",{"fpregunta":fpregunta},RequestContext(request))
+
+def pagina_index(request):
+	lista=Partida.objects.filter(tipo_partida='public')
+	return render_to_response("blog/index.html",{'lista':lista},context_instance=RequestContext(request))

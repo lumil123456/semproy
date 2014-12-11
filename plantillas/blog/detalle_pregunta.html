@@ -10,13 +10,13 @@
 <li><a href="/blog/controlarpreguntas/">Controlar de preguntas</a></li>
 {% endblock aux %}
 {% block encabezado %}DETALLE DE PREGUNTAS{% endblock encabezado %}
-{% block contenido %}
+{% block container %}
 <ol>
 {% for i in lista %}
 <li><a href="/blog/ver_detalle_pregunta/{{i.id}}">{{i.enunciado}}</a></li>
 {% endfor %}
 </ol>
-{% endblock contenido %}
+{% endblock %}
 	
 
 

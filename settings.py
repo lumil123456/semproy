@@ -47,8 +47,8 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookAppOAuth2',
    'social.backends.facebook.FacebookOAuth2',
-   'social.backends.google.GoogleOAuth2',
    'social.backends.twitter.TwitterOAuth',
    'django.contrib.auth.backends.ModelBackend',
 )
@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'triviador.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-"""
+
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.sqlite3',
@@ -87,6 +87,7 @@ DATABASES = {
         'USER':'root'
     }
 }
+"""
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -131,14 +132,21 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'social.apps.django_app.context_processors.login_redirect',
 )
 
+
+
 GOOGLE_OAUTH2_CLIENT_ID = ''
 
 GOOGLE_OAUTH2_CLIENT_SECRET = ''
 
 
 
-SOCIAL_AUTH_FACEBOOK_KEY = '539064209560004'
-SOCIAL_AUTH_FACEBOOK_SECRET = '0a3b9982fc38723714affd8d62409000'
+
+LOGIN_URL          = '/login/' #url de donde se logea
+LOGIN_REDIRECT_URL = '/user/perfil/' #url cuando se registre con exito el usuario
+LOGIN_ERROR_URL    = '/login/error/' #url si hay error
+
+#SOCIAL_AUTH_FACEBOOK_KEY = '539064209560004'
+#SOCIAL_AUTH_FACEBOOK_SECRET = '0a3b9982fc38723714affd8d62409000'
 
 
 
@@ -152,7 +160,9 @@ LOGIN_URL = '/account/login/'
 
 LOGIN_REDIRECT_URL = '/account/post_login/'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://www.facebook.com/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000/'
+SOCIAL_AUTH_FACEBOOK_KEY = '321463284721470'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9ae5e2edb330b564637084753402a1d0'
 
 #<<<<<<< HEAD
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

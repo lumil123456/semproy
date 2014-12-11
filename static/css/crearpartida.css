@@ -1,0 +1,23 @@
+.form{
+		width: 50%;
+		margin: auto;
+	}
+	#nuevo{
+		width: 80%;
+		margin: auto;
+	}
+	#nuevo li input{
+		width: 50%;
+		height: 40px;
+		margin-top: 10px;
+		border-radius: 6px;
+
+	}
+	#env{
+		border-radius: 15px;
+		margin: auto;
+	}
+	#can{
+		border-radius: 15px;
+		margin: auto;
+	}
