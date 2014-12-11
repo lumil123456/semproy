@@ -1,9 +1,0 @@
-#formContainer{
-    width:288px;
-    height:321px;
-    margin:0 auto;
-    position:relative;
-    -moz-perspective: 800px;
-    -webkit-perspective: 800px;
-    perspective: 800px;
-}
